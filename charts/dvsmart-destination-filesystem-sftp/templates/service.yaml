@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dvsmart-destination-filesystem-sftp.fullname" . }}
+  labels:
+    {{- include "dvsmart-destination-filesystem-sftp.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}        # Puerto externo (ej. 80 o 22)
+      targetPort: 22                          # <--- ¡CORRECCIÓN CLAVE! Puerto interno del contenedor.
+      protocol: TCP
+      name: sftp	  
+  selector:
+    {{- include "dvsmart-destination-filesystem-sftp.selectorLabels" . | nindent 4 }}

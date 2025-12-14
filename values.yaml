@@ -1,0 +1,11 @@
+#################################################################
+# Enable/disable helm charts
+# to customize the SROM deployment.
+#################################################################
+dvsmart-destination-filesystem-sftp:
+  enabled: true
+dvsmart-source-filesystem-sftp:
+  enabled: true
+global:
+  prod: false
+  tag: ""
