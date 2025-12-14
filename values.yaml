@@ -6,6 +6,10 @@ dvsmart-destination-filesystem-sftp:
   enabled: true
 dvsmart-source-filesystem-sftp:
   enabled: true
+dvsmart-catalog-mongodb:
+  enabled: true
+dvsmart_reorganization_api:
+  enabled: true
 global:
-  prod: false
+  env: loc
   tag: ""
