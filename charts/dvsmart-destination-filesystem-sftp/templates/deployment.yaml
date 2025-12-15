@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "dvsmart-destination-filesystem-sftp.fullname" . }}
   labels:
-    {{- include "dvsmart-destination-filesystem-sftp.labels" . | nindent 4 ]}
+    {{- include "dvsmart-destination-filesystem-sftp.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
