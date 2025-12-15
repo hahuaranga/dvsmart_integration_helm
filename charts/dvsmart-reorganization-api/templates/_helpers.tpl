@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "dvsmart_reorganization_api.name" -}}
+{{- define "dvsmart-reorganization-api.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "dvsmart_reorganization_api.fullname" -}}
+{{- define "dvsmart-reorganization-api.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "dvsmart_reorganization_api.chart" -}}
+{{- define "dvsmart-reorganization-api.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "dvsmart_reorganization_api.labels" -}}
-helm.sh/chart: {{ include "dvsmart_reorganization_api.chart" . }}
-{{ include "dvsmart_reorganization_api.selectorLabels" . }}
+{{- define "dvsmart-reorganization-api.labels" -}}
+helm.sh/chart: {{ include "dvsmart-reorganization-api.chart" . }}
+{{ include "dvsmart-reorganization-api.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "dvsmart_reorganization_api.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "dvsmart_reorganization_api.name" . }}
+{{- define "dvsmart-reorganization-api.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "dvsmart-reorganization-api.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "dvsmart_reorganization_api.serviceAccountName" -}}
+{{- define "dvsmart-reorganization-api.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "dvsmart_reorganization_api.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "dvsmart-reorganization-api.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

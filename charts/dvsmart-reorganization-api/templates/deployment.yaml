@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dvsmart_reorganization_api.fullname" . }}
+  name: {{ include "dvsmart-reorganization-api.fullname" . }}
   labels:
-    {{- include "dvsmart_reorganization_api.labels" . | nindent 4 }}
+    {{- include "dvsmart-reorganization-api.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "dvsmart_reorganization_api.selectorLabels" . | nindent 6 }}
+      {{- include "dvsmart-reorganization-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "dvsmart_reorganization_api.labels" . | nindent 8 }}
+        {{- include "dvsmart-reorganization-api.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "dvsmart_reorganization_api.serviceAccountName" . }}
+      serviceAccountName: {{ include "dvsmart-reorganization-api.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}

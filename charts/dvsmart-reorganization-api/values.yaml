@@ -1,4 +1,4 @@
-# Default values for dvsmart_reorganization_api.
+# Default values for dvsmart-reorganization-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -17,7 +17,7 @@ image:
 imagePullSecrets: []
 # This is to override the chart name.
 nameOverride: ""
-fullnameOverride: "dvsmart_reorganization_api"
+fullnameOverride: "dvsmart-reorganization-api"
 
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:
@@ -145,8 +145,8 @@ autoscaling:
 volumes: 
   - configMap:
       defaultMode: 420
-      name: dvsmart_reorganization_api-configmap
-    name: dvsmart_reorganization_api_configmap_vol
+      name: dvsmart-reorganization-api-configmap
+    name: dvsmart-reorganization-api_configmap_vol
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -154,7 +154,7 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: 
- - name: dvsmart_reorganization_api_configmap_vol
+ - name: dvsmart-reorganization-api_configmap_vol
    mountPath: "/opt/funhogar/cfg/application.properties"
    subPath: application.properties
    #readOnly: true

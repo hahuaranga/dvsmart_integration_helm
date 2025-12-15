@@ -36,7 +36,7 @@ dependencies:
     version: ~1.x-0
     repository: '@local'
     condition: dvsmart-catalog-mongodb.enabled
-  - name: dvsmart_reorganization_api
+  - name: dvsmart-reorganization-api
     version: ~1.x-0
     repository: '@local'
-    condition: dvsmart_reorganization_api.enabled	
+    condition: dvsmart-reorganization-api.enabled	

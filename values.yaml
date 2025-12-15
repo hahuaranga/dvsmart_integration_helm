@@ -8,7 +8,7 @@ dvsmart-source-filesystem-sftp:
   enabled: true
 dvsmart-catalog-mongodb:
   enabled: true
-dvsmart_reorganization_api:
+dvsmart-reorganization-api:
   enabled: true
 global:
   env: loc
