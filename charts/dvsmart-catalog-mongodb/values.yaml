@@ -160,9 +160,11 @@ volumeMounts:
 #   readOnly: true
 
 storage:
-  enabled: true # Para controlar la creación del PVC
-  name: catalog-mongodb-data-pvc # Usar el mismo nombre que ya tienes en volumes.claimName
-  size: 5Gi # <-- Define el tamaño del storage
+  enabled: true
+  # Usar el mismo nombre que ya tienes en volumes.claimName
+  name: catalog-mongodb-data-pvc
+  # <-- Define el tamaño del storage
+  size: 5Gi 
   accessModes: ["ReadWriteOnce"]
   # storageClassName: standard # Opcional: si necesitas una clase de almacenamiento específica
 
@@ -179,8 +181,8 @@ env:
   - name: MONGO_INITDB_ROOT_PASSWORD
     value: "password"
   - name: MONGO_INITDB_DATABASE
-    value: "dvsmart_reorganization_dev"
+    value: "dvsmart-ms"
   - name: MONGO_USER
-    value: "dvsmart_user"
+    value: "dvsmart_ms"
   - name: MONGO_PASSWORD
     value: "eoQQqfTyMd"
