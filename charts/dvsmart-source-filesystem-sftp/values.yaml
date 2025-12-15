@@ -171,7 +171,7 @@ sftp:
   secret:
     create: true
     # Formato: "username:password:uid:gid:directory"
-    sftpUsers: "sftpsourceuser:securepass:1000:1000:organized_data"
+    sftpUsers: "sftpsourceuser:securepass:1000:1000:disorganized_data"
     # Si prefieres usar un secret existente en lugar de crear uno nuevo
     existingSecret: ""  
   
