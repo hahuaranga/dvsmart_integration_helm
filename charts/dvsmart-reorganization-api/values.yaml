@@ -146,7 +146,7 @@ volumes:
   - configMap:
       defaultMode: 420
       name: dvsmart-reorganization-api-configmap
-    name: dvsmart-reorganization-api_configmap_vol
+    name: dvsmart-reorganization-api-configmap-vol
 # - name: foo
 #   secret:
 #     secretName: mysecret
@@ -154,7 +154,7 @@ volumes:
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: 
- - name: dvsmart-reorganization-api_configmap_vol
+ - name: dvsmart-reorganization-api-configmap-vol
    mountPath: "/opt/funhogar/cfg/application.properties"
    subPath: application.properties
    #readOnly: true
