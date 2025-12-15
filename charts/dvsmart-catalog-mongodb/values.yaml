@@ -182,6 +182,6 @@ env:
   - name: MONGO_INITDB_DATABASE
     value: "dvsmart-ms"
   - name: MONGO_USER
-    value: "dvsmart_ms"
+    value: "dvsmart_user"
   - name: MONGO_PASSWORD
     value: "eoQQqfTyMd"
