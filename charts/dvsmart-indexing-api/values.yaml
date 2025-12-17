@@ -155,7 +155,7 @@ volumes:
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: 
  - name: dvsmart-indexing-api-configmap-vol
-   mountPath: "/opt/funhogar/cfg/application.properties"
+   mountPath: "/opt/dvsmart/cfg/application.properties"
    subPath: application.properties
    #readOnly: true
 
