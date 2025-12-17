@@ -10,6 +10,8 @@ dvsmart-catalog-mongodb:
   enabled: true
 dvsmart-reorganization-api:
   enabled: true
+dvsmart-indexing-api:
+  enabled: true  
 global:
   env: loc
   tag: ""
