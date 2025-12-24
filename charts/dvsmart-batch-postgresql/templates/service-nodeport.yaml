@@ -1,0 +1,17 @@
+{{- if .Values.service.nodeport.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dvsmart-postgresql.fullname" . }}-nodeport
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: {{ .Values.service.nodeport.type }}
+  ports:
+    - name: tcp
+      nodePort: {{ .Values.service.nodeport.port }}    
+      port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: {{ .Values.service.port }}      
+  selector:
+    {{- include "dvsmart-postgresql.selectorLabels" . | nindent 4 }}
+{{- end }}

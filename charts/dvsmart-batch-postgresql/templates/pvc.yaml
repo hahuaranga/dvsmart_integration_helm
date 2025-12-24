@@ -1,0 +1,14 @@
+{{- if .Values.volume.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ printf "%s-pvc" (include "dvsmart-postgresql.fullname" .) }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.volume.storage }}
+  storageClassName: {{ .Values.volume.storageClass }}
+{{- end }}

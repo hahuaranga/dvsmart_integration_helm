@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dvsmart-postgresql.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "dvsmart-postgresql.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "dvsmart-postgresql.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "dvsmart-postgresql.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- if and (eq .Values.image.tag "") (eq .Values.image.repository "") }}
+          image: {{ .Chart.Name | quote }}
+          {{- else }}
+          image: {{ (printf "%s/%s:%s" .Values.image.repository .Values.image.name .Values.image.tag) | quote }}
+          {{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+              name: service
+              protocol: TCP
+          {{- if .Values.volume.enabled }}
+          volumeMounts:
+            - mountPath: {{ .Values.volume.mountPath }}  # Ruta de datos en el contenedor de PostgreSQL
+              name: {{ .Values.volume.name }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.volume.enabled }}
+      volumes:
+        - name: {{ .Values.volume.name }}
+          persistentVolumeClaim:
+            claimName: {{ printf "%s-pvc" (include "dvsmart-postgresql.fullname" .) }}  # Reclamo del Persistent Volume Claim      
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

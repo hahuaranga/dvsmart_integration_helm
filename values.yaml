@@ -11,7 +11,9 @@ dvsmart-catalog-mongodb:
 dvsmart-reorganization-api:
   enabled: true
 dvsmart-indexing-api:
-  enabled: true  
+  enabled: true
+dvsmart-batch-postgresql:
+  enabled: true
 global:
   env: loc
   tag: ""
