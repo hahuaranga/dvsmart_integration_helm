@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "dvsmart-postgresql.fullname" . }}
+  name: {{ include "dvsmart-batch-postgresql.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "dvsmart-postgresql.labels" . | nindent 4 }}
+    {{- include "dvsmart-batch-postgresql.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "dvsmart-postgresql.selectorLabels" . | nindent 6 }}
+      {{- include "dvsmart-batch-postgresql.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -19,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "dvsmart-postgresql.selectorLabels" . | nindent 8 }}
+        {{- include "dvsmart-batch-postgresql.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -52,7 +52,7 @@ spec:
       volumes:
         - name: {{ .Values.volume.name }}
           persistentVolumeClaim:
-            claimName: {{ printf "%s-pvc" (include "dvsmart-postgresql.fullname" .) }}  # Reclamo del Persistent Volume Claim      
+            claimName: {{ printf "%s-pvc" (include "dvsmart-batch-postgresql.fullname" .) }}  # Reclamo del Persistent Volume Claim      
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

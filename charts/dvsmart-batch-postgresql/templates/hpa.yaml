@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "dvsmart-postgresql.fullname" . }}
+  name: {{ include "dvsmart-batch-postgresql.fullname" . }}
   labels:
-    {{- include "dvsmart-postgresql.labels" . | nindent 4 }}
+    {{- include "dvsmart-batch-postgresql.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "dvsmart-postgresql.fullname" . }}
+    name: {{ include "dvsmart-batch-postgresql.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

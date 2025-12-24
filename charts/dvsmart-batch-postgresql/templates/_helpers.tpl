@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "dvsmart-postgresql.name" -}}
+{{- define "dvsmart-batch-postgresql.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "dvsmart-postgresql.fullname" -}}
+{{- define "dvsmart-batch-postgresql.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "dvsmart-postgresql.chart" -}}
+{{- define "dvsmart-batch-postgresql.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "dvsmart-postgresql.labels" -}}
-helm.sh/chart: {{ include "dvsmart-postgresql.chart" . }}
-{{ include "dvsmart-postgresql.selectorLabels" . }}
+{{- define "dvsmart-batch-postgresql.labels" -}}
+helm.sh/chart: {{ include "dvsmart-batch-postgresql.chart" . }}
+{{ include "dvsmart-batch-postgresql.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,18 +45,18 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "dvsmart-postgresql.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "dvsmart-postgresql.name" . }}
+{{- define "dvsmart-batch-postgresql.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "dvsmart-batch-postgresql.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-workload.user.cattle.io/workloadselector: apps.deployment-{{ .Release.Namespace }}-{{ include "dvsmart-postgresql.fullname" . }}
+workload.user.cattle.io/workloadselector: apps.deployment-{{ .Release.Namespace }}-{{ include "dvsmart-batch-postgresql.fullname" . }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "dvsmart-postgresql.serviceAccountName" -}}
+{{- define "dvsmart-batch-postgresql.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "dvsmart-postgresql.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "dvsmart-batch-postgresql.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ printf "%s-pvc" (include "dvsmart-postgresql.fullname" .) }}
+  name: {{ printf "%s-pvc" (include "dvsmart-batch-postgresql.fullname" .) }}
   namespace: {{ .Release.Namespace }}
 spec:
   accessModes:

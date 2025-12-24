@@ -1,18 +1,18 @@
-# Default values for dvsmart-postgresql.
+# Default values for dvsmart-batch-postgresql.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 replicaCount: 1
 
 image:
   repository: "localhost:5000"
-  name: "dvsmart-postgresql"
+  name: "dvsmart-batch-postgresql"
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0.0"
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "dvsmart-postgresql"
+fullnameOverride: "dvsmart-batch-postgresql"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -80,7 +80,7 @@ volume:
   enabled: true
   mountPath: "/var/lib/postgresql/data"
   hostPath: "/data"
-  name: dvsmart-postgresql-vol
+  name: dvsmart-batch-postgresql-vol
   storage: 500Mi
   storageClass: standard
 
