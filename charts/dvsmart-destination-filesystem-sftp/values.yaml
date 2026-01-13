@@ -189,7 +189,7 @@ initContainers:
     volumeMounts:
       - name: organized-data
         mountPath: /home/sftpdestinationuser/organized_data	
-	  
+
 nodeSelector: {}
 
 tolerations: []
