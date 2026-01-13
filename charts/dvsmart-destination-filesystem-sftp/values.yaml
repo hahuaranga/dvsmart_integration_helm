@@ -177,19 +177,6 @@ sftp:
     # Si prefieres usar un secret existente en lugar de crear uno nuevo
     existingSecret: ""  
 
-initContainers:
-  - name: fix-permissions
-    image: busybox
-    command:
-      - sh
-      - -c
-      - |
-        chown -R 1000:1000 /home/sftpdestinationuser/organized_data
-        chmod -R 755 /home/sftpdestinationuser/organized_data
-    volumeMounts:
-      - name: organized-data
-        mountPath: /home/sftpdestinationuser/organized_data	
-
 nodeSelector: {}
 
 tolerations: []
