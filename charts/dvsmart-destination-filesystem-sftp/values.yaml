@@ -161,18 +161,18 @@ volumeMounts:
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
-initContainers:
-  - name: fix-permissions
-    image: busybox
-    command:
-      - sh
-      - -c
-      - |
-        chown -R 1000:1000 /home/sftpdestinationuser/organized_data
-        chmod -R 755 /home/sftpdestinationuser/organized_data
-    volumeMounts:
-      - name: organized-data
-        mountPath: /home/sftpdestinationuser/organized_data
+#initContainers:
+#  - name: fix-permissions
+#    image: busybox
+#    command:
+#      - sh
+#      - -c
+#      - |
+#        chown -R 1000:1000 /home/sftpdestinationuser/organized_data
+#        chmod -R 755 /home/sftpdestinationuser/organized_data
+#    volumeMounts:
+#      - name: organized-data
+#        mountPath: /home/sftpdestinationuser/organized_data
 
 storage:
   enabled: true # Para controlar la creación del PVC
