@@ -159,6 +159,23 @@ volumeMounts:
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
+initContainers:
+  - name: fix-permissions
+    image: busybox
+    securityContext:
+      runAsUser: 0
+    command:
+      - sh
+      - -c
+      - |
+        chown -R 1000:1000 /home/sftpdestinationuser/organized_data
+        chmod -R 755 /home/sftpdestinationuser/organized_data
+        echo "Permissions fixed:"
+        ls -la /home/sftpdestinationuser/
+    volumeMounts:
+      - name: organized-data
+        mountPath: /home/sftpdestinationuser/organized_data
+
 storage:
   enabled: true # Para controlar la creación del PVC
   name: organized-data-pvc # Usar el mismo nombre que ya tienes en volumes.claimName
