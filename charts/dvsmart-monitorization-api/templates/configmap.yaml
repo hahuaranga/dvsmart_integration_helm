@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-configmap" (include "dvsmart-monitorization-api.fullname" .) }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "dvsmart-monitorization-api.name" . }}
+    chart: 	{{ printf "%s-%s" .Chart.Name (.Chart.Version | replace "+" "_") }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+{{ tpl (.Files.Glob (printf "resources/config/%s/application.properties" .Values.global.env)).AsConfig . | indent 2 }}

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dvsmart-monitorization-api.fullname" . }}
+  labels:
+    {{- include "dvsmart-monitorization-api.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "dvsmart-monitorization-api.selectorLabels" . | nindent 4 }}

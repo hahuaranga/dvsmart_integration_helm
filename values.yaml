@@ -14,6 +14,10 @@ dvsmart-indexing-api:
   enabled: true
 dvsmart-batch-postgresql:
   enabled: true
+dvsmart-files-api:
+  enabled: true  
+dvsmart-monitorization-api:
+  enabled: true
 global:
   env: loc
   tag: ""
