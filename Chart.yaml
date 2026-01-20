@@ -56,4 +56,3 @@ dependencies:
     version: ~1.x-0
     repository: '@local'
     condition: dvsmart-monitorization-api.enabled
-	
